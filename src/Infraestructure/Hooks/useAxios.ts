@@ -8,12 +8,34 @@ export const useAxios = () => {
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const get = async <T>(endpoint: string) => {
-    const response: AxiosResponse<ReponseModel<T>> = await axios.get(`${apiUrl}/${endpoint}`, { signal });
+    const response: AxiosResponse<ReponseModel<T>> = await axios.get(`${apiUrl}/${endpoint}`, {
+      signal,
+    });
     return response.data;
   };
 
   const post = async <T, R>(endpoint: string, payload: R) => {
-    const response: AxiosResponse<ReponseModel<T>> = await axios.post(`${apiUrl}/${endpoint}`, payload, { signal });
+    const response: AxiosResponse<ReponseModel<T>> = await axios.post(
+      `${apiUrl}/${endpoint}`,
+      payload,
+      { signal }
+    );
+    return response.data;
+  };
+
+  const put = async <T, R>(endpoint: string, payload: R) => {
+    const response: AxiosResponse<ReponseModel<T>> = await axios.put(
+      `${apiUrl}/${endpoint}`,
+      payload,
+      { signal }
+    );
+    return response.data;
+  };
+
+  const remove = async <T>(endpoint: string) => {
+    const response: AxiosResponse<ReponseModel<T>> = await axios.delete(`${apiUrl}/${endpoint}`, {
+      signal,
+    });
     return response.data;
   };
 
@@ -23,5 +45,5 @@ export const useAxios = () => {
     };
   }, []);
 
-  return { get, post };
+  return { get, post, put, remove };
 };

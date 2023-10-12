@@ -1,17 +1,23 @@
+import { useLoginStore } from "@/Application/Settings/State";
 import { LoginModel } from "@/Domain/Models";
 import { useLoginRepository } from "@/Infraestructure/Repositories";
 
 export const useLoginService = () => {
+  const { setToken, clearToken } = useLoginStore((state) => state);
   const { sendCredentials } = useLoginRepository();
 
-  const handleClick = async () => {
+  const handleSetToken = async () => {
     const request: LoginModel = {
       username: "admin",
       password: "root",
     };
     const response = await sendCredentials(request);
-    console.log(response);
+    setToken(response.data);
   };
 
-  return { handleClick };
+  const handleClearToken = () => {
+    clearToken();
+  }
+
+  return { handleSetToken, handleClearToken };
 };

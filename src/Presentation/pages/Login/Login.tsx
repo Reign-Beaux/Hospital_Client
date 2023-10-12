@@ -1,7 +1,12 @@
 import { useLoginService } from "@/Application/Services";
 
 export const Login = () => {
-  const { handleClick } = useLoginService();
+  const { handleSetToken, handleClearToken } = useLoginService();
 
-  return <button onClick={handleClick}>Click me!</button>;
+  return (
+    <>
+      <button onClick={handleSetToken}>Set Token</button>
+      <button onClick={handleClearToken}>Clear Token</button>
+    </>
+  );
 };

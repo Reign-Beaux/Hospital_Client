@@ -7,3 +7,5 @@ export const IconLogin = () => <i className="fa-solid fa-arrow-right-to-bracket"
 export const IconLogout = () => <i className="fa-solid fa-arrow-right-from-bracket"></i>;
 export const IconSearch = () => <i className="fa-solid fa-magnifying-glass"></i>;
 export const IconSave = () => <i className="fa-solid fa-floppy-disk"></i>;
+export const IconVisibilityOn = () => <i className="fa-solid fa-eye"></i>;
+export const IconVisibilityOff = () => <i className="fa-solid fa-eye-slash"></i>;

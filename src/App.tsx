@@ -1,7 +1,5 @@
-import { Login } from "./Presentation/pages";
-
 function App() {
-  return <Login />;
+  return (<>Hola</>);
 }
 
 export default App;

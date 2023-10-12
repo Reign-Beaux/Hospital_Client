@@ -5,6 +5,7 @@ import { useEffect } from "react";
 export const useAxios = () => {
   const abortController = new AbortController();
   const signal = abortController.signal;
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const get = async <T>(url: string) => {
     const response: AxiosResponse<ReponseModel<T>> = await axios.get(url, { signal });

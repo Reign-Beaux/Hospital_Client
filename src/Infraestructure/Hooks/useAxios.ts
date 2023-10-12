@@ -7,13 +7,13 @@ export const useAxios = () => {
   const signal = abortController.signal;
   const apiUrl = import.meta.env.VITE_API_URL;
 
-  const get = async <T>(url: string) => {
-    const response: AxiosResponse<ReponseModel<T>> = await axios.get(url, { signal });
+  const get = async <T>(endpoint: string) => {
+    const response: AxiosResponse<ReponseModel<T>> = await axios.get(`${apiUrl}/${endpoint}`, { signal });
     return response.data;
   };
 
-  const post = async <T, R>(url: string, payload: R) => {
-    const response: AxiosResponse<ReponseModel<T>> = await axios.post(url, payload, { signal });
+  const post = async <T, R>(endpoint: string, payload: R) => {
+    const response: AxiosResponse<ReponseModel<T>> = await axios.post(`${apiUrl}/${endpoint}`, payload, { signal });
     return response.data;
   };
 

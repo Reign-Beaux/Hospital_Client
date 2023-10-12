@@ -1,16 +1,17 @@
-import { useLoginRepository } from "@/Infraestructure/Repositories";
-import { useFormSettings } from "./Hooks";
 import { LoginModel } from "@/Domain/Models";
+import { useLoginRepository } from "@/Infraestructure/Repositories";
 
 export const useLoginService = () => {
   const { sendCredentials } = useLoginRepository();
 
-  const handleSubmit = async (values: LoginModel) => {
-    const response = await sendCredentials(values);
+  const handleClick = async () => {
+    const request: LoginModel = {
+      username: "admin",
+      password: "root",
+    };
+    const response = await sendCredentials(request);
     console.log(response);
   };
 
-  const { formik } = useFormSettings({ handleSubmit });
-
-  return { formik };
+  return { handleClick };
 };

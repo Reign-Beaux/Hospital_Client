@@ -1,10 +1,17 @@
 import { useLoginService } from "@/Application/Services";
+import { useSessionStore } from "@/Application/Settings/State";
 import { CPasswordField, CTextField } from "@/Presentation/atoms";
 import { Box, Button, Card, CardContent, CircularProgress, Typography } from "@mui/material";
+import { useEffect } from "react";
 
 export const Login = () => {
+  const clearToken = useSessionStore((state) => state.clearToken);
   const { formik } = useLoginService();
 
+  useEffect(() => {
+    clearToken();
+  }, []);
+  
   return (
     <div
       style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>

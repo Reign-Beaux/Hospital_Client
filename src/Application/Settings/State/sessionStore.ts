@@ -7,16 +7,17 @@ interface State {
 }
 
 const getSession = () => {
-  let sessionString = localStorage.getItem("session");
+  const sessionString = localStorage.getItem("session");
   if (!sessionString) return "";
 
-  return sessionString;
+  const value = JSON.parse(sessionString) as State;
+  return value.token
 }
 
 export const useSessionStore = create<State>()((set) => ({
   token: getSession(),
   setToken: (token: string) => {
-    localStorage.setItem("session", token);
+    localStorage.setItem("session", JSON.stringify({ token: token}));
     set({ token })
   },
   clearToken: () => {

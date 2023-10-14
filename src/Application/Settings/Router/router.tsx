@@ -1,10 +1,15 @@
-import { Login } from "@/Presentation/pages";
+import { Home, Login } from "@/Presentation/pages";
 import { Navigate, RouteObject, createBrowserRouter } from "react-router-dom";
+import { RouteAccessControl } from ".";
 
 const routes: RouteObject[] = [
   {
+    path: "/",
+    element: <RouteAccessControl element={<Home />} />,
+  },
+  {
     path: "/login",
-    element: <Login />,
+    element: <RouteAccessControl element={<Login />} />,
   },
   {
     path: "*",

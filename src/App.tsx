@@ -1,15 +1,10 @@
-import { useEffect } from "react";
-import { useLoginStore } from "./Application/Settings/State";
-import { Login } from "./Presentation/pages";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./Application/Settings/Router";
 
 function App() {
-  const token = useLoginStore(state => state.token)
-
-  useEffect(() => {
-    console.log(token);
-  }, [token])
-
-  return (<Login />);
+  return (
+    <RouterProvider router={router} />
+  );
 }
 
 export default App;

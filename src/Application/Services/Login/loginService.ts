@@ -1,9 +1,9 @@
-import { useLoginStore } from "@/Application/Settings/State";
+import { useSessionStore } from "@/Application/Settings/State";
 import { LoginModel } from "@/Domain/Models";
 import { useLoginRepository } from "@/Infraestructure/Repositories";
 
 export const useLoginService = () => {
-  const { setToken, clearToken } = useLoginStore((state) => state);
+  const { setToken, clearToken } = useSessionStore((state) => state);
   const { sendCredentials } = useLoginRepository();
 
   const handleSetToken = async () => {

@@ -8,7 +8,7 @@ export interface RouteAccessControlProps {
 
 export const RouteAccessControl = ({element}: RouteAccessControlProps) => {  
   const { token } = useSessionStore((state) => state);
-
+  
   if (!token) return <Navigate to="/login" />;
 
   return <>{element}</>;

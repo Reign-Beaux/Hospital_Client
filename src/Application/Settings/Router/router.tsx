@@ -9,7 +9,7 @@ const routes: RouteObject[] = [
   },
   {
     path: "/login",
-    element: <RouteAccessControl element={<Login />} />,
+    element: <Login />,
   },
   {
     path: "*",

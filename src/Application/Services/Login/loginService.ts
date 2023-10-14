@@ -1,23 +1,21 @@
 import { useSessionStore } from "@/Application/Settings/State";
 import { LoginModel } from "@/Domain/Models";
 import { useLoginRepository } from "@/Infraestructure/Repositories";
+import { useFormSettings } from "./Hooks";
+import { useNavigate } from "react-router-dom";
 
 export const useLoginService = () => {
-  const { setToken, clearToken } = useSessionStore((state) => state);
+  const { setToken } = useSessionStore((state) => state);
   const { sendCredentials } = useLoginRepository();
+  const navigate = useNavigate();
 
-  const handleSetToken = async () => {
-    const request: LoginModel = {
-      username: "admin",
-      password: "root",
-    };
-    const response = await sendCredentials(request);
+  const handleSendCredentials = async (values: LoginModel) => {
+    const response = await sendCredentials(values);
     setToken(response.data);
+    navigate("/");
   };
 
-  const handleClearToken = () => {
-    clearToken();
-  }
+  const { formik } = useFormSettings({ handleSendCredentials });
 
-  return { handleSetToken, handleClearToken };
+  return { formik };
 };

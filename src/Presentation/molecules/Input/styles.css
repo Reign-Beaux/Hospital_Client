@@ -18,6 +18,13 @@
   caret-color: var(--mu-text);
 }
 
+/* .form__field:-internal-autofill-selected {
+  appearance: none;
+  background-image: initial !important;
+  background-color: initial !important;
+  color: initial !important;
+} */
+
 .form__field::placeholder {
   color: transparent;
 }

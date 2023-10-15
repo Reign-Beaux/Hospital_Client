@@ -1,24 +1,26 @@
 import { IconClose, IconVisibilityOff, IconVisibilityOn } from "@/Presentation/atoms";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./styles.css";
 
 export interface InputProps
   extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   clearable?: boolean;
-  inputName?: string;
+  formik?: any;
+  inputObject?: any;
   password?: boolean;
-  inputObject: any;
+  setValue?: Function;
+  inputName: string;
   inputText: string;
-  setValue: Function;
 }
 
 type TypeInput = "text" | "password";
 
 export const Input = ({
   clearable,
-  inputName,
-  password,
+  formik,
   inputObject,
+  password,
+  inputName,
   inputText,
   setValue,
   ...props
@@ -31,28 +33,37 @@ export const Input = ({
     setShowPassword((prevState) => !prevState);
   };
 
-  const handleChange = (value: string) => {
-    setValue((prevUser: any) => ({
-      ...prevUser,
-      [inputName!]: value,
-    }));
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!!formik) {
+      formik.handleChange(e);
+    } else {
+      setValue!((prevUser: any) => ({
+        ...prevUser,
+        [inputName!]: e.target.value,
+      }));
+    }
   };
 
   const handleClearClick = () => {
-    setValue((prevUser: any) => ({
-      ...prevUser,
-      [inputName!]: "",
-    }));
+    if (!!formik) {
+      formik.setFieldValue(inputName, "");
+    } else {
+      setValue!((prevUser: any) => ({
+        ...prevUser,
+        [inputName!]: "",
+      }));
+    }
   };
 
   return (
-    <div className="form__group field">
+    <div className="form__group">
       <input
+        id={inputName}
         type={typeInput}
         className="form__field"
-        value={inputObject[inputName!]}
+        value={!!formik ? formik.values[inputName] : inputObject![inputName]}
         placeholder={inputText}
-        onChange={(e) => handleChange(e.target.value)}
+        onChange={handleChange}
         {...props}
       />
       {password ? (
@@ -63,7 +74,11 @@ export const Input = ({
         <button
           className="clear-icon"
           onClick={handleClearClick}
-          style={!(clearable && inputObject[inputName!]) ? { display: "none" } : {}}>
+          style={
+            !(clearable && (!!formik ? !!formik.values[inputName] : !!inputObject[inputName]))
+              ? { display: "none" }
+              : {}
+          }>
           <IconClose />
         </button>
       )}

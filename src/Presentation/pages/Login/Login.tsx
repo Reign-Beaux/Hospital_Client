@@ -1,6 +1,6 @@
 import { useLoginService } from "@/Application/Services";
 import { useSessionStore } from "@/Application/Settings/State";
-import { Card } from "@/Presentation/atoms";
+import { Anchor, Card } from "@/Presentation/atoms";
 import { Button, Input } from "@/Presentation/molecules";
 import { useEffect, useState } from "react";
 import "./styles.css";
@@ -40,7 +40,11 @@ export const Login = () => {
           inputObject={user}
           setValue={setUser}
         />
-        <Button style={{ marginTop: "10px" }}>Iniciar Sesión</Button>
+        <Button className="login-button">Iniciar Sesión</Button>
+        <hr />
+        <Anchor href={"https://www.youtube.com.mx"}>
+          ¿Olvidaste tu contraseña?
+        </Anchor>
       </form>
       {/* <CardContent>
         <Typography variant="h3" gutterBottom textAlign={"center"}>

@@ -10,7 +10,7 @@ export interface ButtonProps
   icon?: string;
 }
 
-export const Button = ({ children, isLoading, icon, ...props }: ButtonProps) => {
+export const Button = ({ children, className, isLoading, icon, ...props }: ButtonProps) => {
   const [classButton, setClassButton] = useState<string>("");
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export const Button = ({ children, isLoading, icon, ...props }: ButtonProps) => 
   }, [isLoading]);
 
   return (
-    <button className={classButton} disabled={isLoading} {...props}>
+    <button className={`${classButton} ${className}`} disabled={isLoading} {...props}>
       {isLoading ? (
         <span className="button-loader"></span>
       ) : (

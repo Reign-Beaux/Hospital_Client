@@ -33,7 +33,7 @@ export const Login = () => {
           inputName="password"
           formik={formik}
         />
-        <Button className="login-button" type="submit">
+        <Button className="login-button" type="submit" isLoading={formik.isSubmitting}>
           Iniciar Sesión
         </Button>
         <hr />

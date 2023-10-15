@@ -1,5 +1,5 @@
 import { IconClose, IconVisibilityOff, IconVisibilityOn } from "@/Presentation/atoms";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import "./styles.css";
 
 export interface InputProps

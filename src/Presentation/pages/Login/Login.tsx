@@ -15,6 +15,7 @@ export const Login = () => {
 
   return (
     <Card className="login-container">
+      <h1 style={{color: "var(--mu-text)"}}>Iniciar Sesión</h1>
       <form onSubmit={formik.handleSubmit}>
         <Input clearable inputText="Usuario" inputName="username" formik={formik} />
         <Input password inputText="Contraseña" inputName="password" formik={formik} />

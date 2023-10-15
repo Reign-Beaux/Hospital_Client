@@ -5,11 +5,6 @@ import { Button, Input } from "@/Presentation/molecules";
 import { useEffect } from "react";
 import "./styles.css";
 
-export interface User {
-  username: string;
-  password: string;
-}
-
 export const Login = () => {
   const clearToken = useSessionStore((state) => state.clearToken);
   const { formik } = useLoginService();
@@ -21,18 +16,8 @@ export const Login = () => {
   return (
     <Card className="login-container">
       <form onSubmit={formik.handleSubmit}>
-        <Input
-          clearable
-          inputText="Usuario"
-          inputName="username"
-          formik={formik}
-        />
-        <Input
-          password
-          inputText="Contraseña"
-          inputName="password"
-          formik={formik}
-        />
+        <Input clearable inputText="Usuario" inputName="username" formik={formik} />
+        <Input password inputText="Contraseña" inputName="password" formik={formik} />
         <Button className="login-button" type="submit" isLoading={formik.isSubmitting}>
           Iniciar Sesión
         </Button>

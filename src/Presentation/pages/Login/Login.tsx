@@ -27,8 +27,3 @@ export const Login = () => {
     </Card>
   );
 };
-
-/*
-<POSTextField keyFormik="username" label="Usuario" formik={formik} />
-
-*/

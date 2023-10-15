@@ -67,11 +67,12 @@ export const Input = ({
         {...props}
       />
       {password ? (
-        <button className="clear-icon" onClick={handleToggleShowPassword}>
+        <button type="button" className="clear-icon" onClick={handleToggleShowPassword}>
           {showPassword ? <IconVisibilityOff /> : <IconVisibilityOn />}
         </button>
       ) : (
         <button
+          type="button"
           className="clear-icon"
           onClick={handleClearClick}
           style={
